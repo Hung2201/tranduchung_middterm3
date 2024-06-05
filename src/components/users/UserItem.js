@@ -16,6 +16,7 @@ const UserItem = (props) => {
           More
         </a>
       </div>
+      
     </div>
   );
 };
