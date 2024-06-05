@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const RepoItem = (repoItem) => {
-    // console.log(repoItem);
     const { name, description, deployments_url } = repoItem;
 
     return (

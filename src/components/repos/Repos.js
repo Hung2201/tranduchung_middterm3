@@ -1,21 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import RePoItem from './RepoItem';
 
-const RepoItem = (repoItem) => {
-    // console.log(repoItem);
-    const { name, description, deployments_url } = repoItem;
-
+const Repos = ({ repos }) => {
     return (
-        <div className="card text-center">
-            <div className="card-header">
-                <h3>{name}</h3>
-                <p>{description}</p>
-                <Link to={deployments_url} target="_blank" rel="noreferrer">
-                    <button className="btn btn-dark">View on Github</button>
-                </Link>
-            </div>
+        <div className="card-group">
+            {repos.map((repo) => (
+                <RePoItem key={repo.id} name={repo.name} description={repo.description} deployments_url={repo.deployments_url} />
+            ))}
         </div>
     );
 }
 
-export default RepoItem;
+export default Repos;
