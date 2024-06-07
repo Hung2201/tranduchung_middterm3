@@ -1,6 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { CiLight } from "react-icons/ci";
 const Navbar = () => {
+  const [theme, setTheme] = useState("light");
+  useEffect(() => {
+    document.body.className = theme === "light" ? "bg-light " : "bg-dark";
+  }, [theme]);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    theme === "dark" ? setTheme("light") : setTheme("dark");
+  };
   return (
     <nav className="navbar bg-success">
       <h1>
@@ -8,6 +19,7 @@ const Navbar = () => {
       </h1>
       <ul>
         <li>
+          <CiLight onClick={handleClick} />
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
         </li>
