@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, {useContext } from "react";
 import Users from "./Users";
 import { getUsers } from "../../api/api";
+import { SearchContext } from "../../SearchContext";
 const Search = () => {
-  const [text, setText] = useState("");
-  const [users, setUsers] = useState([]);
+  const { text, setText, users, setUsers } = useContext(SearchContext);
   const searchUsers = async (text) => {
     try {
       const users = await getUsers(text);
@@ -14,6 +14,7 @@ const Search = () => {
   };
   const clearUsers = () => {
     setUsers([]);
+    setText("");
   };
   const onSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ const Search = () => {
       alert("Please enter something");
     } else {
       searchUsers(text);
-      setText("");
+      setText(text);
     }
   };
   const onChange = (e) => setText(e.target.value);

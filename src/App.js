@@ -1,26 +1,19 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
+import Home from "./components/layout/Home";
 import Navbar from "./components/layout/Navbar";
-import Search from "./components/users/Search";
-import About from "./components/pages/About";
-import User from "./components/users/User";
-import NotFound from "./components/pages/NotFound";
+import { SearchProvider } from "./SearchContext";
 
 const App = () => {
   return (
     <div className="App">
-      <Router>
-        <Navbar />
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<Search />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/user/:id" element={<User />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
-      </Router>
+      <SearchProvider>
+        <Router>
+          <Navbar />
+          <Home />
+        </Router>
+      </SearchProvider>
     </div>
   );
 };
